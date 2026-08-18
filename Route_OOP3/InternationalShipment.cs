@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Route_OOP3.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Route_OOP3
 {
-    public class InternationalShipment : Shipment
+    public class InternationalShipment : Shipment,ITrackable,IInsurable
     {
         private string destinationCountry;
         private decimal customsFee;
@@ -70,6 +71,16 @@ namespace Route_OOP3
             Console.WriteLine($"Customs Report for {TrackingCode}");
             Console.WriteLine($"Destination Country: {DestinationCountry}");
             Console.WriteLine($"Customs Fee: {CustomsFee}");
+        }
+
+        public string GetTrackingStatus()
+        {
+            return $"Shipment {TrackingCode} has been Delivered.";
+        }
+
+        public decimal CalculateInsurance()
+        {
+            return EstimatedCost*0.12m;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Route_OOP3.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -84,6 +85,19 @@ namespace Route_OOP3
                     shipments[i].PrintShipment();
                     Console.WriteLine("----------------------");
 
+                }
+            }
+        }
+
+        public void PrintTrackingStatuses()
+        {
+            foreach (Shipment shipment in shipments)
+            {
+                if (shipment != null)
+                {
+                    ITrackable t = (ITrackable)shipment;
+
+                    Console.WriteLine(t.GetTrackingStatus());
                 }
             }
         }

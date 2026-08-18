@@ -1,13 +1,28 @@
-﻿namespace Route_OOP3
+﻿using Route_OOP3.Interfaces;
+
+namespace Route_OOP3
 {
     internal class Program
     {
         static void Main(string[] args)
         {
 
+            #region Question1
+            //is the process of hiding implementation details and showing only the essential features of an object.what not how
+            //can be achieved using abstract classes and interfaces.
+            //Because abstraction helps us hide complex implementation details and expose only what is necessary to the user, helps in maintaining the code in the future.
+
+            #endregion
+            //A)
+            //interface: implemantation of interface is mandatory in the derived class, and it can be implemented by any class, struct, or record. It can contain only method signatures, properties, events, and indexers. A class can implement multiple interfaces.
+            //abstract class: inheriting and implementing from an abstract class is optional, and it can be inherited only by a class. It can contain method implementations, fields, constructors, and destructors. A class can inherit only one abstract class.
+            //B)
+            //Choose an Interface when you want different, possibly unrelated classes to follow the same contract or behavior.(No Inheritance)
+            //no One class parent, yes multiple interfaces.
+
             Console.Write("Enter Center Name: ");
-            string centerName= Console.ReadLine();
-            DeliveryCenter center= new DeliveryCenter(centerName);
+            string centerName = Console.ReadLine();
+            DeliveryCenter center = new DeliveryCenter(centerName);
             Console.WriteLine("=====Driver Inf=====");
             int driverId;
             do
@@ -283,18 +298,40 @@
                 shipment.PrintShipment();
                 Console.WriteLine("----------------------");
             }
-            // CompletedShipment is sealed,
-            // so another class cannot inherit from it.
-            //
-            // Example - NOT allowed:
-            //
-            // class TestShipment : CompletedShipment
-            // {
-            // }
-            // GenerateCustomsReport() is sealed in PriorityInternationalShipment.
-            // Therefore, a class that inherits from PriorityInternationalShipment
-            // cannot override GenerateCustomsReport() again.
+            Console.WriteLine("==========================================");
+            Console.WriteLine("Tracking Status");
+            center.PrintTrackingStatuses();
+            DeliveryReport report =
+              new DeliveryReport();
+            Console.WriteLine("==========================================");
+            Console.WriteLine("Insurance");
+            report.PrintInsurance(standardShipment);
+            Console.WriteLine();
+            report.PrintInsurance(expressShipment);
+            Console.WriteLine();
+            report.PrintInsurance(internationalShipment);
+            Console.WriteLine("ITrackable[]");
+            Console.WriteLine();
+            ITrackable[] trackables = {
+                standardShipment, expressShipment, internationalShipment
 
-        }
+               };
+            foreach (ITrackable trackable in trackables)
+            {
+                Console.WriteLine(trackable.GetTrackingStatus());
+            }
+            Console.WriteLine("IInsurance[]");
+            IInsurable[] insurables = {
+                standardShipment, expressShipment, internationalShipment
+            };
+            foreach (IInsurable insurable in insurables)
+            {
+                Console.WriteLine($"Insurance: {insurable.CalculateInsurance()}");
+            }
+            Console.WriteLine("==========================================");
+            Console.WriteLine(
+             "Interface Polymorphism Demonstrated Successfully.");
+        
+    }
     }
 }

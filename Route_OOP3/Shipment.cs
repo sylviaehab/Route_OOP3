@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Route_OOP3
 {
-    public class Shipment
+    public abstract class Shipment
     {
         private string trackingCode;
         private string description;
@@ -43,9 +43,9 @@ namespace Route_OOP3
                     deliveryFee = value;
             }
         }
-        public virtual decimal EstimatedCost
+        public  abstract decimal EstimatedCost
         {
-            get { return (decimal)(Weight * 5) + DeliveryFee; }
+            get ;
         }
         public Shipment(string trackingCode)
      : this(
@@ -75,15 +75,8 @@ namespace Route_OOP3
             if (newFee > 0)
                 DeliveryFee = newFee;
         }
-        public virtual void PrintShipment()
-        {
-            Console.WriteLine($"Tracking Code: {TrackingCode}");
-            Console.WriteLine($"Description: {Description}");
-            Console.WriteLine($"Weight: {Weight} kg");
-            Console.WriteLine($"Delivery Fee: {DeliveryFee}");
-            Console.WriteLine($"Estimated Cost: {EstimatedCost}");
-            Console.WriteLine($"Destination: {Destination.GetFullAddress()}");
-        }
+        public abstract void PrintShipment();
+       
         public void UpdateWeight(decimal newWeight)
         {
             if (newWeight > 0)

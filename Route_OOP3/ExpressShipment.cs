@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Route_OOP3.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Route_OOP3
 {
-    public class ExpressShipment : Shipment
+    public class ExpressShipment : Shipment,ITrackable,IInsurable
 
     {
         private decimal extraFee;
@@ -55,6 +56,15 @@ namespace Route_OOP3
             Console.WriteLine($"Extra Fee : {ExtraFee} EGP");
             Console.WriteLine($"Estimated Cost : {EstimatedCost} EGP");
             Console.WriteLine($"Destination : {Destination.GetFullAddress()}");
+        }
+
+        public string GetTrackingStatus()
+        {
+            return $"Shipment {TrackingCode} is Out for Delivery.";
+        }
+        public decimal CalculateInsurance()
+        {
+            return EstimatedCost * 0.08m;
         }
     }
 }
