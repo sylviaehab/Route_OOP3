@@ -310,6 +310,7 @@ namespace Route_OOP3
             report.PrintInsurance(expressShipment);
             Console.WriteLine();
             report.PrintInsurance(internationalShipment);
+            Console.WriteLine("==========================================");
             Console.WriteLine("ITrackable[]");
             Console.WriteLine();
             ITrackable[] trackables = {
@@ -320,6 +321,7 @@ namespace Route_OOP3
             {
                 Console.WriteLine(trackable.GetTrackingStatus());
             }
+            Console.WriteLine("==========================================");
             Console.WriteLine("IInsurance[]");
             IInsurable[] insurables = {
                 standardShipment, expressShipment, internationalShipment
