@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Route_OOP3
 {
-    public struct DeliveryAddress
+    public class DeliveryAddress
     {
         public string street;
         public string city;

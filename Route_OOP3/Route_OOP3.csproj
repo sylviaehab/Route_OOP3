@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Shipment.Tracking..cs" />
+  </ItemGroup>
+
 </Project>

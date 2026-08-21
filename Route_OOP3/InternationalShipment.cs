@@ -82,5 +82,25 @@ namespace Route_OOP3
         {
             return EstimatedCost*0.12m;
         }
+        public override Shipment CopyShipment()
+        {
+            return new InternationalShipment(
+                TrackingCode,
+                Description,
+                Weight,
+                DeliveryFee,
+                Destination,
+                DestinationCountry,
+                CustomsFee
+            );
+        }
+        public override Shipment ShallowCopy()
+        {
+            return (Shipment)this.MemberwiseClone();
+        }
+        public override Shipment DeepCopy()
+        {
+            return new StandardShipment(TrackingCode, Description, Weight, DeliveryFee, new DeliveryAddress(Destination.city, Destination.street, Destination.buildingNumber));
+        }
     }
 }

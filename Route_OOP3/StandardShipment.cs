@@ -37,5 +37,26 @@ namespace Route_OOP3
             Console.WriteLine($"Estimated Cost : {EstimatedCost} EGP");
             Console.WriteLine($"Destination : {Destination.GetFullAddress()}");
         }
+        public override Shipment CopyShipment()
+        {
+                return new StandardShipment(TrackingCode, Description, Weight, DeliveryFee, Destination);
+        }
+        public override Shipment ShallowCopy()
+        {
+            return (Shipment)this.MemberwiseClone();
+        }
+        public override Shipment DeepCopy()
+        {
+            return new StandardShipment(
+                TrackingCode,
+                Description,
+                Weight,
+                DeliveryFee,
+                new DeliveryAddress(
+                    Destination.street,
+                    Destination.city,
+                    Destination.buildingNumber));
+        }
+
     }
 }

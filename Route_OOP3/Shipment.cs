@@ -4,9 +4,10 @@ using System.Text;
 
 namespace Route_OOP3
 {
-    public abstract class Shipment
+    public abstract  partial class Shipment
     {
         private string trackingCode;
+        public static int TotalShipmentsCreated;
         private string description;
         private decimal weight;
         private decimal deliveryFee;
@@ -47,6 +48,11 @@ namespace Route_OOP3
         {
             get ;
         }
+        static Shipment()
+        {
+            TotalShipmentsCreated = 0;
+            Console.WriteLine("Shipment System Initialized");
+        }
         public Shipment(string trackingCode)
      : this(
          trackingCode,
@@ -69,7 +75,10 @@ namespace Route_OOP3
             Weight = weight;
             DeliveryFee = deliveryFee;
             Destination = destination;
+
+            TotalShipmentsCreated++;
         }
+      
         public void UpdateDeliveryFee(decimal newFee)
         {
             if (newFee > 0)
@@ -87,6 +96,16 @@ namespace Route_OOP3
             if (newWeight > 0 && extraPackingWeight >= 0)
                 Weight = newWeight+extraPackingWeight;
         }
-
+        public abstract Shipment CopyShipment();
+        public abstract Shipment ShallowCopy();
+        public abstract Shipment DeepCopy();
+        public static int GetTotalShipmentsCreated()
+        {
+            return TotalShipmentsCreated;
+        }
+        partial void OnTrackingStatusChanged(string newStatus)
+        {
+            Console.WriteLine($"Tracking status updated to: {newStatus}");
+        }
     }
 }
